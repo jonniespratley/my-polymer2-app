@@ -1,0 +1,103 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<dom-module id="my-polymer2-app">
+	<template>
+    <style include="iron-flex iron-flex-alignment iron-flex-factors">
+      :host {
+			  display: block;
+      }
+			:host header, :host footer {
+				padding: 1rem;
+				background: #ccc;
+			}
+
+			.container {
+			 @apply(--layout-horizontal);
+			 @apply(--layout-wrap);
+		 }
+			.demo {
+				background-color: #ccc;
+				padding: 4px;
+
+			}
+			.demo div {
+				background-color: white;
+				padding: 12px;
+				margin: 4px;
+			}
+		</style>
+		<iron-ajax id="ajax"
+		  auto
+		  url="package.json"
+		  handle-as="json"
+		  on-error="handleError"
+		  on-response="handleResponse"
+			></iron-ajax>
+
+			<header>
+				<span>[[name]]</span>
+			</header>
+			<div class="layout horizontal demo">
+				<div class="flex-1">
+					Sidebar
+				</div>
+ 				<div class="flex-3">Beta (flex)</div>
+	    </div>
+
+			<section>
+				<ul>
+					<li>Item 1</li>
+				</ul>
+			</section>
+			<footer>Copywrite 2017</footer>
+	</template>
+
+	<script>
+		class MyApplication extends Polymer.Element {
+			static get is() {
+				return 'my-polymer2-app';
+			}
+			static get properties() {
+				return {
+					name: {
+						type: String,
+						value: 'my-polymer2-app'
+					},
+					myProp: {
+						type: Object,
+						notifies: true
+					}
+				};
+			}
+			static get observers() {
+				return [
+					'_myPropChanged(myProp.*)'
+				]
+			}
+			constructor() {
+				super();
+				console.log('constructor');
+			}
+			handleError(e) {
+				console.log('handleError', e);
+				this.dispatchEvent(new CustomEvent('some-error', {
+					bubbles: true
+				}, e));
+			}
+			handleResponse(e) {
+				console.log('handleResponse', e);
+			}
+			connectedCallback() {
+				super.connectedCallback();
+				console.log('connectedCallback');
+			}
+			_myPropChanged(changeRecord) {
+				console.log('myPropChanged', changeRecord);
+			}
+		}
+		window.customElements.define(MyApplication.is, MyApplication);
+	</script>
+</dom-module>

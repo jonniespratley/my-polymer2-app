@@ -1,0 +1,26 @@
+{
+  "name": "my-polymer2-app",
+  "description": "A example app using Polymer 2.0",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "./node_modules/.bin/polymer serve",
+    "test": "./node_modules/.bin/polymer test",
+    "lint": "./node_modules/.bin/polymer lint",
+    "build": "./node_modules/.bin/polymer build"
+  },
+  "keywords": [
+    "polymer2"
+  ],
+  "author": "Jonnie Spratley",
+  "license": "ISC",
+  "devDependencies": {
+    "web-component-tester": "^5.0.0"
+  },
+  "dependencies": {
+    "polymer-cli": "^0.17.0"
+  }
+}
