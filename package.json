@@ -21,6 +21,6 @@
     "web-component-tester": "^5.0.0"
   },
   "dependencies": {
-    "polymer-cli": "^0.17.0"
+    "polymer-cli": "next"
   }
 }
