@@ -12,8 +12,9 @@ addons:
     packages:
       - google-chrome-stable
 before_script:
+  - npm install -g polymer-cli@next
   #- npm install web-component-tester
   - 'export PATH=$PWD/node_modules/.bin:$PATH'
 script:
   #- xvfb-run wct --skip-plugin sauce
-  - xvfb-run npm test
+  - xvfb-run polymer test
